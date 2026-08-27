@@ -227,8 +227,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // IMPORTANT:
             // Images are stored inside /products/
 
-            image.src =
-                `./public/images/products/${product.image}`;
+            image.src = 
+                `/public/images/products/${product.image}`;
+
 
             image.alt =
                 product.name;
@@ -410,16 +411,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     ₹${Number(product.price).toLocaleString("en-IN")}
                 </span>
 
-                ${product.originalPrice
-                ?
-                `
+                ${
+                    product.originalPrice
+                    ?
+                    `
                     <span class="product-old-price">
                         ₹${Number(product.originalPrice).toLocaleString("en-IN")}
                     </span>
                     `
-                :
-                ""
-            }
+                    :
+                    ""
+                }
 
             </div>
 
@@ -503,8 +505,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             product.category,
                             product.description
                         ]
-                            .join(" ")
-                            .toLowerCase();
+                        .join(" ")
+                        .toLowerCase();
 
 
                     return searchable.includes(
@@ -718,7 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         button.classList.toggle(
                             "active",
                             button.dataset.category ===
-                            "all"
+                                "all"
                         )
                 );
 
@@ -813,7 +815,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .forEach(
                 element =>
                     element.textContent =
-                    total
+                        total
             );
 
     }
