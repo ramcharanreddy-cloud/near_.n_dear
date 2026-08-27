@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Complete your NND order."
+    >
+
+    <title>Checkout — NND</title>
+
+    <!-- Main styles -->
+    <link
+        rel="stylesheet"
+        href="./css/style.css"
+    >
+
+    <!-- Checkout styles -->
+    <link
+        rel="stylesheet"
+        href="./css/checkout.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <!-- LOGO -->
+
+            <a
+                href="./index.html"
+                class="logo"
+                aria-label="NND Home"
+            >
+                <span class="logo-main">
+                    NND
+                </span>
+
+                <span class="logo-sub">
+                    Near N Dear
+                </span>
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="nav-links">
+
+                <a
+                    href="./index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="./shop.html"
+                    class="nav-link"
+                >
+                    Shop
+                </a>
+
+                <a
+                    href="./index.html#collections"
+                    class="nav-link"
+                >
+                    Collections
+                </a>
+
+                <a
+                    href="./index.html#story"
+                    class="nav-link"
+                >
+                    Our Story
+                </a>
+
+            </nav>
+
+
+            <!-- CART -->
+
+            <div class="nav-actions">
+
+                <a
+                    href="./cart.html"
+                    class="icon-btn cart-button"
+                    aria-label="Shopping cart"
+                >
+
+                    <svg
+                        width="21"
+                        height="21"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M5 7h14l-1 13H6L5 7Z"/>
+                        <path d="M9 7a3 3 0 0 1 6 0"/>
+                    </svg>
+
+                    <span class="cart-count">
+                        0
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CHECKOUT
+         ===================================================== -->
+
+    <main class="checkout-page">
+
+        <div class="container checkout-container">
+
+
+            <!-- =================================================
+                 PAGE INTRO
+                 ================================================= -->
+
+            <section class="checkout-intro">
+
+                <span class="checkout-eyebrow">
+                    ✦ Almost yours
+                </span>
+
+                <h1>
+                    Let's make it
+                    <em>yours.</em>
+                </h1>
+
+                <p>
+                    Tell us where to send your little piece of love.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CHECKOUT GRID
+                 ================================================= -->
+
+            <div class="checkout-grid">
+
+
+                <!-- =============================================
+                     CUSTOMER FORM
+                     ============================================= -->
+
+                <section class="checkout-form-card">
+
+                    <div class="section-heading">
+
+                        <span class="section-number">
+                            01
+                        </span>
+
+                        <div>
+                            <h2>
+                                Your details
+                            </h2>
+
+                            <p>
+                                We'll use these details to confirm
+                                your order on WhatsApp.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="checkoutForm">
+
+
+                        <!-- NAME -->
+
+                        <div class="form-group">
+
+                            <label for="customerName">
+                                Full name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customerName"
+                                name="customerName"
+                                placeholder="Your name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- PHONE -->
+
+                        <div class="form-group">
+
+                            <label for="customerPhone">
+                                WhatsApp number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="customerPhone"
+                                name="customerPhone"
+                                placeholder="10-digit mobile number"
+                                autocomplete="tel"
+                                inputmode="numeric"
+                                maxlength="10"
+                                required
+                            >
+
+                            <small>
+                                We'll use WhatsApp to confirm your order.
+                            </small>
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="form-group">
+
+                            <label for="customerEmail">
+                                Email
+                                <span>Optional</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="customerEmail"
+                                name="customerEmail"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                            >
+
+                        </div>
+
+
+
+                        <!-- ADDRESS -->
+
+                        <div class="form-group">
+
+                            <label for="customerAddress">
+                                Delivery address
+                            </label>
+
+                            <textarea
+                                id="customerAddress"
+                                name="customerAddress"
+                                rows="4"
+                                placeholder="House / flat number, street, area..."
+                                autocomplete="street-address"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+
+                        <!-- CITY + PINCODE -->
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="customerCity">
+                                    City
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="customerCity"
+                                    name="customerCity"
+                                    placeholder="City"
+                                    autocomplete="address-level2"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="customerPincode">
+                                    Pincode
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="customerPincode"
+                                    name="customerPincode"
+                                    placeholder="6-digit pincode"
+                                    autocomplete="postal-code"
+                                    inputmode="numeric"
+                                    maxlength="6"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- NOTES -->
+
+                        <div class="form-group">
+
+                            <label for="orderNotes">
+
+                                Anything special?
+
+                                <span>
+                                    Optional
+                                </span>
+
+                            </label>
+
+                            <textarea
+                                id="orderNotes"
+                                name="orderNotes"
+                                rows="4"
+                                placeholder="Colour preference, customisation, gift note..."
+                            ></textarea>
+
+                        </div>
+
+
+
+                        <!-- FORM ERROR -->
+
+                        <div
+                            id="checkoutError"
+                            class="checkout-error"
+                            role="alert"
+                            hidden
+                        ></div>
+
+
+                        <!-- SUBMIT -->
+
+                        <button
+                            type="submit"
+                            class="whatsapp-order-btn"
+                        >
+
+                            <span>
+                                Place order on WhatsApp
+                            </span>
+
+                            <span class="button-arrow">
+                                ↗
+                            </span>
+
+                        </button>
+
+
+                        <p class="checkout-note">
+                            Your order will open in WhatsApp for
+                            confirmation. No online payment is taken here.
+                        </p>
+
+                    </form>
+
+                </section>
+
+
+
+                <!-- =============================================
+                     ORDER SUMMARY
+                     ============================================= -->
+
+                <aside class="order-summary-card">
+
+                    <div class="section-heading">
+
+                        <span class="section-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                Your little pieces
+                            </h2>
+
+                            <p>
+                                Here's what you're getting.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRODUCTS -->
+
+                    <div
+                        id="checkoutItems"
+                        class="checkout-items"
+                    >
+
+                        <!--
+                            checkout.js will insert products here.
+                        -->
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+
+                    <div class="summary-total">
+
+                        <div>
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="checkoutTotal">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                        <p>
+                            Final delivery charges, if applicable,
+                            will be confirmed on WhatsApp.
+                        </p>
+
+                    </div>
+
+
+                    <!-- TRUST -->
+
+                    <div class="checkout-trust">
+
+                        <div class="trust-item">
+
+                            <span class="trust-icon">
+                                ♡
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Made with love
+                                </strong>
+
+                                <span>
+                                    Handmade by NND
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="trust-item">
+
+                            <span class="trust-icon">
+                                ✦
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Thoughtfully made
+                                </strong>
+
+                                <span>
+                                    Created especially for you
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BACK TO CART -->
+
+                    <a
+                        href="./cart.html"
+                        class="back-cart-link"
+                    >
+                        ← Back to cart
+                    </a>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+   <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <!-- ================= FOOTER ================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-main">
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+
+            <a href="./index.html" class="footer-logo">
+                NND
+            </a>
+
+            <span class="footer-brand-subtitle">
+                NEAR N DEAR
+            </span>
+
+            <p class="footer-tagline">
+                Little things, made with love.
+            </p>
+
+            <div class="footer-socials">
+
+                <a
+                    href="https://www.instagram.com/near_n_dear/"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Instagram"
+                    class="footer-social"
+                >
+                    <span>◎</span>
+                </a>
+
+                <a
+                    href="https://wa.me/c/916305150599"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="WhatsApp Catalogue"
+                    class="footer-social"
+                >
+                    <span>◉</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- EXPLORE -->
+        <div class="footer-column">
+
+            <h3>
+                EXPLORE
+            </h3>
+
+            <a href="./shop.html">
+                Shop
+            </a>
+
+            <a href="./shop.html">
+                Collections
+            </a>
+
+            <a href="./index.html#story">
+                Our Story
+            </a>
+
+        </div>
+
+
+        <!-- CUSTOMER CARE -->
+        <div class="footer-column">
+
+            <h3>
+                CUSTOMER CARE
+            </h3>
+
+            <a href="#">
+                About Us
+            </a>
+
+            <a href="#">
+                Shipping & Delivery
+            </a>
+
+            <a href="#">
+                Returns & Exchanges
+            </a>
+
+            <a href="#">
+                FAQs
+            </a>
+
+            <a href="#">
+                Contact Us
+            </a>
+
+        </div>
+
+
+        <!-- CONNECT -->
+        <div class="footer-column">
+
+            <h3>
+                CONNECT
+            </h3>
+
+            <a
+                href="https://www.instagram.com/near_.n_dear?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="
+                target="_blank"
+                rel="noopener"
+            >
+                Instagram
+            </a>
+
+            <a
+                href="https://wa.me/916305150599"
+                target="_blank"
+                rel="noopener"
+            >
+                WhatsApp Catalogue
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 NND — Near N Dear
+        </p>
+
+        <p>
+            Made with ♡
+        </p>
+
+    </div>
+
+
+    <!-- DECORATION -->
+
+    <div class="footer-flower" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <i></i>
+    </div>
+
+</footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="./js/products.js"></script>
+
+    <script src="./js/main.js"></script>
+
+    <script src="./js/checkout.js"></script>
+
+</body>
+
+</html>
