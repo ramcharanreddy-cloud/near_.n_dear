@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Images are stored inside /products/
 
             image.src =
-                `/images/products/${product.image}`;
+                `./public/images/products/${product.image}`;
 
             image.alt =
                 product.name;
