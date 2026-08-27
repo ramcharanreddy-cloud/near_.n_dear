@@ -13,7 +13,7 @@ const products = [
         category: "bouquets",
         customizable: false,
         description: "",
-        image: ""
+        image: "sunflower-bouquet.png"
     },
 
     {
@@ -24,7 +24,7 @@ const products = [
         category: "bouquets",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "single-tulip-bouquet.png"
     },
 
     {
@@ -35,7 +35,7 @@ const products = [
         category: "bouquets",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "4-tulip-bouquet.png"
     },
 
     {
@@ -46,7 +46,7 @@ const products = [
         category: "bouquets",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "crochet-flower-red-bouquet.png"
     },
 
     {
@@ -57,7 +57,7 @@ const products = [
         category: "gifts",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "4x4-frame-with-flower.png"
     },
 
     {
@@ -68,7 +68,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image: "one-piece-hat-keychain.png"
     },
 
     {
@@ -79,7 +79,7 @@ const products = [
         category: "bouquets",
         customizable: false,
         description: "Mini bouquet ₹99 each",
-        image: ""
+        image: "mini-bouquets.png"
     },
 
     {
@@ -90,7 +90,7 @@ const products = [
         category: "hair-accessories",
         customizable: false,
         description: "Mini crochet claw clip",
-        image: ""
+        image: "mini-claw-clip.png"
     },
 
     {
@@ -101,7 +101,7 @@ const products = [
         category: "hair-accessories",
         customizable: false,
         description: "Small flower claw clip",
-        image: ""
+        image: "crochet-claw-clip.png"
     },
 
     {
@@ -112,7 +112,7 @@ const products = [
         category: "flowers",
         customizable: false,
         description: "Crochet rose",
-        image: ""
+        image: "closed-rose.png"
     },
 
     {
@@ -123,7 +123,7 @@ const products = [
         category: "hair-accessories",
         customizable: false,
         description: "",
-        image: ""
+        image: "mogra-scrunchie.png"
     },
 
     {
@@ -134,7 +134,7 @@ const products = [
         category: "accessories",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "lip-balm-holder.png"
     },
 
     {
@@ -145,7 +145,7 @@ const products = [
         category: "bouquets",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "2-daisy-flower-bouquet.png"
     },
 
     {
@@ -156,7 +156,7 @@ const products = [
         category: "bouquets",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "single-lilu-bouquet.png"
     },
 
     {
@@ -167,7 +167,7 @@ const products = [
         category: "bouquets",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "spidy-tulip.png"
     },
 
     {
@@ -178,7 +178,7 @@ const products = [
         category: "hair-accessories",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "2-flower-claw-clip.png"
     },
 
     {
@@ -189,7 +189,7 @@ const products = [
         category: "hair-accessories",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "3-flower-claw-clip.png"
     },
 
     {
@@ -200,7 +200,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image:"heart-keychain.png"
     },
 
     {
@@ -211,7 +211,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image: "star-keychain.png"
     },
 
     {
@@ -222,7 +222,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image:"mikasa-keychain.png"
     },
 
     {
@@ -233,7 +233,7 @@ const products = [
         category: "hair-accessories",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "crochet-hair-clips.png"
     },
 
     {
@@ -244,7 +244,7 @@ const products = [
         category: "gifts",
         customizable: false,
         description: "16 inch bouquet blanket",
-        image: ""
+        image: "bouquet-blanket.png"
     },
 
     {
@@ -255,7 +255,7 @@ const products = [
         category: "keychains",
         customizable: true,
         description: "Customisation available",
-        image: ""
+        image: "bow-keychains.png"
     },
 
     {
@@ -266,7 +266,7 @@ const products = [
         category: "hair-accessories",
         customizable: false,
         description: "",
-        image: ""
+        image: "kaleshi-clip.png"
     },
 
     {
@@ -277,8 +277,12 @@ const products = [
         category: "wearables",
         customizable: false,
         description: "",
-        image: ""
+        image: "mikasa-scarf.png"
     },
+
+    // =====================================================
+    // IMAGE ADDED
+    // =====================================================
 
     {
         id: "keychain-each-99",
@@ -288,7 +292,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "Keychain each ₹99",
-        image: ""
+        image: "keychain-each-99.png"
     },
 
     {
@@ -299,7 +303,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image: "moor-pankh-keychain.png"
     },
 
     {
@@ -310,7 +314,7 @@ const products = [
         category: "charms",
         customizable: false,
         description: "",
-        image: ""
+        image: "evil-eye-charm.png"
     },
 
     {
@@ -321,7 +325,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image: "cream-roll-keychain.png"
     },
 
     {
@@ -332,7 +336,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image: "3-flower-bouquet-keychain.png"
     },
 
     {
@@ -343,7 +347,7 @@ const products = [
         category: "keychains",
         customizable: false,
         description: "",
-        image: ""
+        image: "sunflower-keychain.png"
     }
 
 ];
@@ -360,10 +364,10 @@ const storeInfo = {
     fullName: "Near N Dear",
 
     whatsappCatalogue:
-        "https://wa.me/c/916305150599",
+        "https://wa.me/916305150599",
 
     instagram:
-        "https://instagram.com/near_n_dear"
+        "https://www.instagram.com/near_.n_dear?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="
 
 };
 

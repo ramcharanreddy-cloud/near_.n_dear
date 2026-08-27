@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         item.image
                             ? `
                                 <img
-                                    src="${item.image}"
+                                    src="./public/images/products/${item.image}"
                                     alt="${escapeHTML(item.name)}"
                                 >
                             `

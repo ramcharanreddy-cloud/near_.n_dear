@@ -27,40 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // -----------------------------------------------------
-    // NAVBAR SEARCH ELEMENTS
-    // -----------------------------------------------------
-
-    const navSearchToggle =
-        document.querySelector(".nav-search-toggle");
-
-    const searchPanel =
-        document.getElementById("searchPanel");
-
-    const searchClose =
-        document.getElementById("searchClose");
-
-    const navSearchInput =
-        document.getElementById("navSearchInput");
-
-
-    // -----------------------------------------------------
     // DATA
     // -----------------------------------------------------
 
     const allProducts =
         window.NND_PRODUCTS || [];
 
+    let activeCategory = "all";
 
-    let activeCategory =
-        "all";
+    let searchTerm = "";
 
-
-    let searchTerm =
-        "";
-
-
-    let sortType =
-        "featured";
+    let sortType = "featured";
 
 
     // -----------------------------------------------------
@@ -69,11 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const categoryLabels = {
 
-        "bouquets":
-            "Bouquets",
+        "bouquets": "Bouquets",
 
-        "keychains":
-            "Keychains",
+        "keychains": "Keychains",
 
         "hair-accessories":
             "Hair Accessories",
@@ -105,13 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const name =
             product.name.toLowerCase();
 
-
-        if (
-            name.includes("sunflower")
-        ) {
+        if (name.includes("sunflower")) {
             return "🌻";
         }
-
 
         if (
             name.includes("tulip") ||
@@ -121,13 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
             return "🌷";
         }
 
-
-        if (
-            name.includes("rose")
-        ) {
+        if (name.includes("rose")) {
             return "🌹";
         }
-
 
         if (
             name.includes("clip") ||
@@ -136,34 +103,21 @@ document.addEventListener("DOMContentLoaded", () => {
             return "🎀";
         }
 
-
-        if (
-            name.includes("keychain")
-        ) {
+        if (name.includes("keychain")) {
             return "♡";
         }
 
-
-        if (
-            name.includes("blanket")
-        ) {
+        if (name.includes("blanket")) {
             return "✿";
         }
 
-
-        if (
-            name.includes("scarf")
-        ) {
+        if (name.includes("scarf")) {
             return "〰";
         }
 
-
-        if (
-            name.includes("charm")
-        ) {
+        if (name.includes("charm")) {
             return "✦";
         }
-
 
         return "✿";
     }
@@ -188,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ];
 
-
         return backgrounds[
             index % backgrounds.length
         ];
@@ -208,19 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return 0;
         }
 
-
         return Math.round(
-
             (
-                (
-                    product.originalPrice -
-                    product.price
-                ) /
+                (product.originalPrice - product.price) /
                 product.originalPrice
             ) * 100
-
         );
-
     }
 
 
@@ -236,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const discount =
             getDiscount(product);
 
-
         const category =
             categoryLabels[product.category] ||
             product.category;
@@ -244,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const card =
             document.createElement("article");
-
 
         card.className =
             "product-card";
@@ -257,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const visual =
             document.createElement("div");
 
-
         visual.className =
             "product-visual";
 
@@ -269,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         // -------------------------------------------------
-        // IMAGE
+        // PRODUCT IMAGE
         // -------------------------------------------------
 
         if (product.image) {
@@ -277,13 +220,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const image =
                 document.createElement("img");
 
-
             image.className =
                 "product-image";
 
 
-            image.src =
-                product.image;
+            // IMPORTANT:
+            // Images are stored inside /products/
+
+            image.src = 
+                `./public/images/products/${product.image}`;
 
 
             image.alt =
@@ -296,6 +241,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             image.onerror = () => {
 
+                console.warn(
+                    "NND: Image could not be loaded:",
+                    image.src
+                );
+
+
                 image.remove();
 
 
@@ -307,9 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
 
-            visual.appendChild(
-                image
-            );
+            visual.appendChild(image);
 
         } else {
 
@@ -326,15 +275,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (discount > 0) {
 
             visual.insertAdjacentHTML(
-
                 "beforeend",
-
                 `
-                    <span class="product-badge">
-                        -${discount}%
-                    </span>
+                <span class="product-badge">
+                    -${discount}%
+                </span>
                 `
-
             );
 
         }
@@ -347,41 +293,34 @@ document.addEventListener("DOMContentLoaded", () => {
         if (product.customizable) {
 
             visual.insertAdjacentHTML(
-
                 "beforeend",
-
                 `
-                    <span class="product-badge custom">
-                        Customisable
-                    </span>
+                <span class="product-badge custom">
+                    Customisable
+                </span>
                 `
-
             );
 
         }
 
 
         // -------------------------------------------------
-        // ADD TO CART
+        // ADD TO CART BUTTON
         // -------------------------------------------------
 
         const addButton =
             document.createElement("button");
 
-
         addButton.className =
             "add-product-btn";
 
-
         addButton.type =
             "button";
-
 
         addButton.setAttribute(
             "aria-label",
             `Add ${product.name} to cart`
         );
-
 
         addButton.innerHTML =
             "+";
@@ -389,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         addButton.addEventListener(
             "click",
-            event => {
+            (event) => {
 
                 event.stopPropagation();
 
@@ -428,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         // -------------------------------------------------
-        // PRODUCT PAGE
+        // OPEN PRODUCT PAGE
         // -------------------------------------------------
 
         visual.addEventListener(
@@ -443,12 +382,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         // -------------------------------------------------
-        // PRODUCT INFO
+        // PRODUCT INFORMATION
         // -------------------------------------------------
 
         const info =
             document.createElement("div");
-
 
         info.className =
             "product-info";
@@ -463,11 +401,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${escapeHTML(product.name)}
             </a>
 
-
             <span class="product-category">
                 ${escapeHTML(category)}
             </span>
-
 
             <div class="product-price-row">
 
@@ -475,14 +411,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     ₹${Number(product.price).toLocaleString("en-IN")}
                 </span>
 
-
                 ${
                     product.originalPrice
                     ?
                     `
-                        <span class="product-old-price">
-                            ₹${Number(product.originalPrice).toLocaleString("en-IN")}
-                        </span>
+                    <span class="product-old-price">
+                        ₹${Number(product.originalPrice).toLocaleString("en-IN")}
+                    </span>
                     `
                     :
                     ""
@@ -497,14 +432,12 @@ document.addEventListener("DOMContentLoaded", () => {
             visual
         );
 
-
         card.appendChild(
             info
         );
 
 
         return card;
-
     }
 
 
@@ -539,13 +472,9 @@ document.addEventListener("DOMContentLoaded", () => {
             [...allProducts];
 
 
-        // -------------------------------------------------
-        // CATEGORY
-        // -------------------------------------------------
+        // Category
 
-        if (
-            activeCategory !== "all"
-        ) {
+        if (activeCategory !== "all") {
 
             result =
                 result.filter(
@@ -557,13 +486,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        // -------------------------------------------------
-        // SEARCH
-        // -------------------------------------------------
+        // Search
 
-        if (
-            searchTerm.trim()
-        ) {
+        if (searchTerm.trim()) {
 
             const search =
                 searchTerm
@@ -572,35 +497,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             result =
-                result.filter(
-                    product => {
+                result.filter(product => {
 
-                        const searchable = [
-
+                    const searchable =
+                        [
                             product.name,
-
                             product.category,
-
                             product.description
-
                         ]
-                            .join(" ")
-                            .toLowerCase();
+                        .join(" ")
+                        .toLowerCase();
 
 
-                        return searchable.includes(
-                            search
-                        );
+                    return searchable.includes(
+                        search
+                    );
 
-                    }
-                );
+                });
 
         }
 
 
-        // -------------------------------------------------
-        // SORT
-        // -------------------------------------------------
+        // Sorting
 
         switch (sortType) {
 
@@ -637,9 +555,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             default:
-
-                // Original dataset order
-
+                // Featured = dataset order
                 break;
 
         }
@@ -668,9 +584,7 @@ document.addEventListener("DOMContentLoaded", () => {
             filtered.length;
 
 
-        if (
-            !filtered.length
-        ) {
+        if (!filtered.length) {
 
             emptyState.hidden =
                 false;
@@ -688,12 +602,10 @@ document.addEventListener("DOMContentLoaded", () => {
             (product, index) => {
 
                 productGrid.appendChild(
-
                     createProductCard(
                         product,
                         index
                     )
-
                 );
 
             }
@@ -703,7 +615,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // -----------------------------------------------------
-    // EXISTING SHOP SEARCH
+    // SEARCH
     // -----------------------------------------------------
 
     searchInput.addEventListener(
@@ -712,16 +624,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             searchTerm =
                 event.target.value;
-
-
-            // Keep navbar search synced
-            if (navSearchInput) {
-
-                navSearchInput.value =
-                    event.target.value;
-
-            }
-
 
             renderProducts();
 
@@ -740,7 +642,6 @@ document.addEventListener("DOMContentLoaded", () => {
             sortType =
                 event.target.value;
 
-
             renderProducts();
 
         }
@@ -748,7 +649,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // -----------------------------------------------------
-    // CATEGORY
+    // CATEGORY FILTER
     // -----------------------------------------------------
 
     categoryButtons.forEach(
@@ -809,14 +710,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 "";
 
 
-            if (navSearchInput) {
-
-                navSearchInput.value =
-                    "";
-
-            }
-
-
             sortSelect.value =
                 "featured";
 
@@ -825,12 +718,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 .forEach(
                     button =>
                         button.classList.toggle(
-
                             "active",
-
                             button.dataset.category ===
-                            "all"
-
+                                "all"
                         )
                 );
 
@@ -839,271 +729,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     );
-
-
-    // =====================================================
-    // NAVBAR SEARCH
-    // =====================================================
-
-
-    // -----------------------------------------------------
-    // OPEN SEARCH
-    // -----------------------------------------------------
-
-    function openNavSearch() {
-
-        if (!searchPanel) {
-            return;
-        }
-
-
-        searchPanel.classList.add(
-            "active"
-        );
-
-
-        searchPanel.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-
-        if (navSearchToggle) {
-
-            navSearchToggle.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-        }
-
-
-        setTimeout(
-            () => {
-
-                if (navSearchInput) {
-
-                    navSearchInput.focus();
-
-                }
-
-            },
-            250
-        );
-
-    }
-
-
-    // -----------------------------------------------------
-    // CLOSE SEARCH
-    // -----------------------------------------------------
-
-    function closeNavSearch() {
-
-        if (!searchPanel) {
-            return;
-        }
-
-
-        searchPanel.classList.remove(
-            "active"
-        );
-
-
-        searchPanel.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-
-        if (navSearchToggle) {
-
-            navSearchToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-
-    }
-
-
-    // -----------------------------------------------------
-    // SEARCH BUTTON
-    // -----------------------------------------------------
-
-    if (navSearchToggle) {
-
-        navSearchToggle.addEventListener(
-            "click",
-            openNavSearch
-        );
-
-    }
-
-
-    // -----------------------------------------------------
-    // CLOSE BUTTON
-    // -----------------------------------------------------
-
-    if (searchClose) {
-
-        searchClose.addEventListener(
-            "click",
-            closeNavSearch
-        );
-
-    }
-
-
-    // -----------------------------------------------------
-    // CLICK OUTSIDE
-    // -----------------------------------------------------
-
-    if (searchPanel) {
-
-        searchPanel.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    searchPanel
-                ) {
-
-                    closeNavSearch();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    // -----------------------------------------------------
-    // ESCAPE
-    // -----------------------------------------------------
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                searchPanel &&
-                searchPanel.classList.contains(
-                    "active"
-                )
-            ) {
-
-                closeNavSearch();
-
-            }
-
-        }
-    );
-
-
-    // -----------------------------------------------------
-    // NAVBAR SEARCH INPUT
-    // -----------------------------------------------------
-
-    if (navSearchInput) {
-
-        navSearchInput.addEventListener(
-            "input",
-            event => {
-
-                searchTerm =
-                    event.target.value;
-
-
-                // Sync existing Shop search
-                searchInput.value =
-                    event.target.value;
-
-
-                renderProducts();
-
-            }
-        );
-
-
-        navSearchInput.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    event.key !== "Enter"
-                ) {
-                    return;
-                }
-
-
-                event.preventDefault();
-
-
-                const query =
-                    navSearchInput.value.trim();
-
-
-                if (!query) {
-                    return;
-                }
-
-
-                searchTerm =
-                    query;
-
-
-                searchInput.value =
-                    query;
-
-
-                renderProducts();
-
-
-                closeNavSearch();
-
-            }
-        );
-
-    }
-
-
-    // -----------------------------------------------------
-    // URL SEARCH
-    // -----------------------------------------------------
-
-    const urlParams =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
-    const urlSearch =
-        urlParams.get("search");
-
-
-    if (urlSearch) {
-
-        searchTerm =
-            urlSearch;
-
-
-        searchInput.value =
-            urlSearch;
-
-
-        if (navSearchInput) {
-
-            navSearchInput.value =
-                urlSearch;
-
-        }
-
-    }
 
 
     // -----------------------------------------------------
@@ -1123,34 +748,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const existing =
             cart.find(
                 item =>
-                    item.id ===
-                    product.id
+                    item.id === product.id
             );
 
 
         if (existing) {
 
-            existing.quantity +=
-                1;
+            existing.quantity += 1;
 
         } else {
 
             cart.push({
 
-                id:
-                    product.id,
+                id: product.id,
 
-                name:
-                    product.name,
+                name: product.name,
 
-                price:
-                    product.price,
+                price: product.price,
 
-                image:
-                    product.image,
+                image: product.image,
 
-                quantity:
-                    1
+                quantity: 1
 
             });
 
@@ -1185,10 +803,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const total =
             cart.reduce(
                 (sum, item) =>
-                    sum +
-                    Number(
-                        item.quantity || 0
-                    ),
+                    sum + item.quantity,
                 0
             );
 
@@ -1213,27 +828,22 @@ document.addEventListener("DOMContentLoaded", () => {
     function escapeHTML(value) {
 
         return String(value)
-
             .replace(
                 /&/g,
                 "&amp;"
             )
-
             .replace(
                 /</g,
                 "&lt;"
             )
-
             .replace(
                 />/g,
                 "&gt;"
             )
-
             .replace(
                 /"/g,
                 "&quot;"
             )
-
             .replace(
                 /'/g,
                 "&#039;"

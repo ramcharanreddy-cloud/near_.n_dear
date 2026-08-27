@@ -4,33 +4,35 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Get product ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get("id");
+    const params =
+        new URLSearchParams(window.location.search);
 
-    // Get products from products.js
-    const allProducts = window.NND_PRODUCTS || [];
+    const productId =
+        params.get("id");
 
-    // Find matching product
-    const product = allProducts.find(
-        item => String(item.id) === String(productId)
-    );
+    const allProducts =
+        window.NND_PRODUCTS || [];
 
-    // Product not found
+    const product =
+        allProducts.find(
+            item =>
+                String(item.id) ===
+                String(productId)
+        );
+
     if (!product) {
         showProductNotFound();
         return;
     }
 
-    // Render product
     renderProduct(product);
 
-    // Setup interactions
     setupQuantity();
+
     setupAddToCart(product);
+
     setupWhatsApp(product);
 
-    // Update cart number
     updateCartCount();
 });
 
@@ -46,41 +48,96 @@ function renderProduct(product) {
 
     if (!container) return;
 
+
     const discount =
         product.originalPrice &&
         product.originalPrice > product.price
+
             ? Math.round(
                 (
-                    (product.originalPrice - product.price) /
+                    (
+                        product.originalPrice -
+                        product.price
+                    ) /
                     product.originalPrice
                 ) * 100
             )
+
             : 0;
+
 
     const symbol =
         getProductSymbol(product);
 
 
+    let visualContent;
+
+
+    // -----------------------------------------------------
+    // PRODUCT IMAGE
+    // -----------------------------------------------------
+
+    if (product.image) {
+
+        visualContent = `
+
+            <img
+                src="./public/images/products/${escapeHTML(product.image)}"
+                alt="${escapeHTML(product.name)}"
+                class="detail-product-image"
+                loading="eager"
+                onerror="handleProductImageError(this)"
+            >
+
+            <div
+                class="detail-art fallback-art"
+                style="display:none;"
+            >
+
+                <span class="detail-art-symbol">
+                    ${symbol}
+                </span>
+
+                <span class="detail-art-name">
+                    NND
+                </span>
+
+            </div>
+
+        `;
+
+    } else {
+
+        visualContent = `
+
+            <div class="detail-art">
+
+                <span class="detail-art-symbol">
+                    ${symbol}
+                </span>
+
+                <span class="detail-art-name">
+                    NND
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    // -----------------------------------------------------
+    // PRODUCT PAGE
+    // -----------------------------------------------------
+
     container.innerHTML = `
 
         <section class="product-page">
 
-            <!-- PRODUCT VISUAL -->
-
             <div class="product-detail-visual">
 
-                <div class="detail-art">
-
-                    <span class="detail-art-symbol">
-                        ${symbol}
-                    </span>
-
-                    <span class="detail-art-name">
-                        NND
-                    </span>
-
-                </div>
-
+                ${visualContent}
 
                 ${
                     discount > 0
@@ -94,8 +151,6 @@ function renderProduct(product) {
 
             </div>
 
-
-            <!-- PRODUCT INFORMATION -->
 
             <div class="product-detail-info">
 
@@ -125,7 +180,9 @@ function renderProduct(product) {
                 <div class="detail-price">
 
                     <span class="current-price">
-                        ₹${Number(product.price).toLocaleString("en-IN")}
+                        ₹${Number(
+                            product.price
+                        ).toLocaleString("en-IN")}
                     </span>
 
 
@@ -170,12 +227,16 @@ function renderProduct(product) {
                             class="quantity-btn"
                             id="decreaseQty"
                             type="button"
+                            aria-label="Decrease quantity"
                         >
                             −
                         </button>
 
 
-                        <span id="quantity">
+                        <span
+                            id="quantity"
+                            aria-live="polite"
+                        >
                             1
                         </span>
 
@@ -184,6 +245,7 @@ function renderProduct(product) {
                             class="quantity-btn"
                             id="increaseQty"
                             type="button"
+                            aria-label="Increase quantity"
                         >
                             +
                         </button>
@@ -282,7 +344,30 @@ function renderProduct(product) {
             </div>
 
         </section>
+
     `;
+}
+
+
+// =========================================================
+// IMAGE FALLBACK
+// =========================================================
+
+function handleProductImageError(image) {
+
+    console.warn(
+        "NND: Product image could not be loaded:",
+        image.src
+    );
+
+    image.style.display = "none";
+
+    const fallback =
+        image.nextElementSibling;
+
+    if (fallback) {
+        fallback.style.display = "flex";
+    }
 }
 
 
@@ -294,21 +379,22 @@ function getCategoryName(category) {
 
     const labels = {
 
-        "bouquets": "Bouquets",
+        bouquets: "Bouquets",
 
-        "keychains": "Keychains",
+        keychains: "Keychains",
 
-        "hair-accessories": "Hair Accessories",
+        "hair-accessories":
+            "Hair Accessories",
 
-        "accessories": "Accessories",
+        accessories: "Accessories",
 
-        "gifts": "Gifts",
+        gifts: "Gifts",
 
-        "flowers": "Flowers",
+        flowers: "Flowers",
 
-        "charms": "Charms",
+        charms: "Charms",
 
-        "wearables": "Wearables"
+        wearables: "Wearables"
 
     };
 
@@ -463,8 +549,9 @@ function setupAddToCart(product) {
 
             const quantity =
                 Number(
-                    document.getElementById("quantity")
-                        ?.textContent || 1
+                    document.getElementById(
+                        "quantity"
+                    )?.textContent || 1
                 );
 
 
@@ -513,6 +600,7 @@ function setupAddToCart(product) {
             button.textContent =
                 "✓ Added to cart";
 
+
             button.classList.add("added");
 
 
@@ -539,60 +627,65 @@ function setupAddToCart(product) {
 
 
 // =========================================================
-// WHATSAPP
+// WHATSAPP ORDER
 // =========================================================
 
 function setupWhatsApp(product) {
 
     const button =
-        document.getElementById(
-            "whatsappOrder"
-        );
-
+        document.getElementById("whatsappOrder");
 
     if (!button) return;
 
+    button.addEventListener("click", () => {
 
-    button.addEventListener(
-        "click",
-        () => {
-
-            const quantity =
-                Number(
-                    document.getElementById("quantity")
-                        ?.textContent || 1
-                );
-
-
-            const total =
-                product.price * quantity;
-
-
-            const message =
-                `Hi NND! 🌻\n\n` +
-                `I'd like to order:\n\n` +
-                `*${product.name}*\n` +
-                `Quantity: ${quantity}\n` +
-                `Price: ₹${total}\n\n` +
-                `Thank you! ❤️`;
-
-
-            const phone =
-                "916305150599";
-
-
-            const url =
-                `https://wa.me/${phone}?text=` +
-                encodeURIComponent(message);
-
-
-            window.open(
-                url,
-                "_blank"
+        const quantity =
+            Number(
+                document.getElementById("quantity")
+                    ?.textContent || 1
             );
 
+        let cart =
+            JSON.parse(
+                localStorage.getItem("nnd-cart")
+            ) || [];
+
+        const existing =
+            cart.find(
+                item => item.id === product.id
+            );
+
+        if (existing) {
+
+            existing.quantity += quantity;
+
+        } else {
+
+            cart.push({
+
+                id: product.id,
+
+                name: product.name,
+
+                price: product.price,
+
+                image: product.image,
+
+                quantity: quantity
+
+            });
+
         }
-    );
+
+        localStorage.setItem(
+            "nnd-cart",
+            JSON.stringify(cart)
+        );
+
+        window.location.href = "./cart.html";
+
+    });
+
 }
 
 
@@ -611,7 +704,8 @@ function updateCartCount() {
     const total =
         cart.reduce(
             (sum, item) =>
-                sum + Number(item.quantity || 0),
+                sum +
+                Number(item.quantity || 0),
             0
         );
 

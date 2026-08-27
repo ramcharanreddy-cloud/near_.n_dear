@@ -9,14 +9,15 @@
 
 .hero {
     position: relative;
-    min-height: calc(100vh - 78px);
+
+    min-height: auto;
 
     display: flex;
     align-items: center;
 
     overflow: hidden;
 
-    padding: 80px 0 110px;
+    padding: 45px 0 75px;
 
     background:
         radial-gradient(
@@ -302,7 +303,7 @@
 .hero-visual {
     position: relative;
 
-    min-height: 650px;
+    min-height: 560px;
 
     display: flex;
     align-items: center;
@@ -313,7 +314,7 @@
 .hero-image-wrap {
     position: relative;
 
-    width: min(100%, 530px);
+    width: min(100%, 500px);
 
     transform: rotate(2deg);
 
