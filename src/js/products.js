@@ -364,7 +364,7 @@ const storeInfo = {
     fullName: "Near N Dear",
 
     whatsappCatalogue:
-        "https://wa.me/916305150599",
+        "https://wa.me/919014430768",
 
     instagram:
         "https://www.instagram.com/near_.n_dear?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="
